@@ -22,6 +22,6 @@ EXPOSE 8888
 ENV USER admin
 ENV SHELL bash
 
-RUN apt install libopenmpi-dev -y && pip3 install mpi4py
+RUN apt install libopenmpi-dev -y && pip3 install mpi4py && pip3 install jupyterlab_slurm
 
 ENTRYPOINT ["/etc/slurm-llnl/docker-entrypoint.sh"]
