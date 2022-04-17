@@ -13,8 +13,6 @@ services:
         user: admin
         volumes:
                 - shared-vol:/home/admin
-        environment:
-                - SLURM_CPUS_ON_NODE=2
         ports:
                 - 6817:6817
                 - 6818:6818
@@ -25,9 +23,6 @@ services:
         user: admin
         volumes:
                 - shared-vol:/home/admin
-        environment:
-                - SLURM_NODENAME=slurmnode1
-                - SLURM_CPUS_ON_NODE=2
         links:
                 - slurmmaster
   slurmnode2:
@@ -36,9 +31,6 @@ services:
         user: admin
         volumes:
                 - shared-vol:/home/admin
-        environment:
-                - SLURM_NODENAME=slurmnode2
-                - SLURM_CPUS_ON_NODE=2
         links:
                 - slurmmaster
   slurmnode3:
@@ -47,9 +39,6 @@ services:
         user: admin
         volumes:
                 - shared-vol:/home/admin
-        environment:
-                - SLURM_NODENAME=slurmnode3
-                - SLURM_CPUS_ON_NODE=1
         links:
                 - slurmmaster
 volumes:
