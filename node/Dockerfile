@@ -2,8 +2,6 @@ FROM slurm-base
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY slurm.conf /etc/slurm-llnl/
-COPY cgroup.conf /etc/slurm-llnl/
 COPY docker-entrypoint.sh /etc/slurm-llnl/
 RUN dos2unix /etc/slurm-llnl/docker-entrypoint.sh
 
