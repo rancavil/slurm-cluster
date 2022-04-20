@@ -2,9 +2,6 @@ FROM slurm-base
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY docker-entrypoint.sh /etc/slurm-llnl/
-RUN dos2unix /etc/slurm-llnl/docker-entrypoint.sh
-
 RUN apt update && apt install -y curl dirmngr apt-transport-https lsb-release ca-certificates
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -20,4 +17,9 @@ EXPOSE 8888
 ENV USER admin
 ENV SHELL bash
 
-ENTRYPOINT ["/etc/slurm-llnl/docker-entrypoint.sh"]
+COPY jupyter.sh /usr/local/bin/
+RUN a+x /usr/local/bin/jupyter.sh
+
+COPY supervisor-jupyter.conf /etc/supervisor/conf.d/
+
+ENTRYPOINT ["sudo", "supervisord", "--nodaemon", "--user", "root"]

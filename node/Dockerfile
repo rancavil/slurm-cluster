@@ -2,9 +2,10 @@ FROM slurm-base
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY docker-entrypoint.sh /etc/slurm-llnl/
-RUN dos2unix /etc/slurm-llnl/docker-entrypoint.sh
-
 EXPOSE 6817 6818 6819
 
-ENTRYPOINT ["/etc/slurm-llnl/docker-entrypoint.sh"]
+COPY supervisor-node.conf /etc/supervisor/conf.d/
+
+WORKDIR /home/admin
+
+ENTRYPOINT ["sudo", "supervisord", "--nodaemon", "--user", "root"]
