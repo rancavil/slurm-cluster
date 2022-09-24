@@ -1,2 +1,9 @@
 venv3.9
 
+.ipynb_checkpoints
+src/.cache
+src/.ipython
+src/.jupyter
+src/.local
+src/.sudo_as_admin_successful
+src/result.out
