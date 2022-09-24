@@ -6,3 +6,4 @@ src/.ipython
 src/.jupyter
 src/.local
 src/.sudo_as_admin_successful
+src/result.out
