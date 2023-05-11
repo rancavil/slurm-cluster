@@ -1,0 +1,55 @@
+name: Build hf-transformers-pytorch-deepspeed
+
+on:
+  push:
+    branches:
+      - main
+      - devel
+      - gn
+  release:
+    types: [created]
+  workflow_dispatch:
+# Environment variables available to all jobs and steps in this workflow.
+env:
+  REGION_ID: cn-beijing
+  ACR_REGISTRY: registry.cn-beijing.aliyuncs.com
+  ACR_NAMESPACE: oneflow
+  DOCKER_HUB_NAMESPACE: oneflowinc
+
+jobs:
+  build-image:
+    name: "Build image"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        img:
+          - { rename: "slurm-head", context: "master" }
+          - { rename: "slurm-worker", context: "node" }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login to ACR with the AccessKey pair
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: https://registry.${{env.REGION_ID}}.aliyuncs.com
+          username: "${{ secrets.ACR_USERNAME }}"
+          password: "${{ secrets.ACR_PASSWORD }}"
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: |
+            ${{ env.DOCKER_HUB_NAMESPACE }}/${{matrix.img.rename}}:latest
+            ${{ env.ACR_REGISTRY }}/${{ env.ACR_NAMESPACE }}/${{matrix.img.rename}}:latest
+            ${{ env.ACR_REGISTRY }}/${{ env.ACR_NAMESPACE }}/${{matrix.img.rename}}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ env.DOCKER_HUB_NAMESPACE }}/${{matrix.img.rename}}:latest
+          cache-to: type=inline
+          context: ${{matrix.img.context}}
