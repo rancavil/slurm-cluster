@@ -1,4 +1,4 @@
-name: Build hf-transformers-pytorch-deepspeed
+name: Build slurm
 
 on:
   push:
@@ -15,6 +15,10 @@ env:
   ACR_REGISTRY: registry.cn-beijing.aliyuncs.com
   ACR_NAMESPACE: oneflow
   DOCKER_HUB_NAMESPACE: oneflowinc
+
+concurrency:
+  group: slurm-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-image:
