@@ -7,4 +7,4 @@ sudo sed -i "s/slurmmaster/${HEAD_HOST}/g" /etc/slurm-llnl/slurm.conf
 sudo service munge start
 sudo service slurmctld start
 
-tail -f /var/log/slurm-llnl/slurmctld.log
+sudo tail -f /var/log/slurm-llnl/slurmctld.log
