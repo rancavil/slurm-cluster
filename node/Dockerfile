@@ -10,7 +10,7 @@ COPY slurm.conf /etc/slurm-llnl/
 COPY cgroup.conf /etc/slurm-llnl/
 COPY docker-entrypoint.sh /etc/slurm-llnl/
 COPY munge.key /etc/munge/munge.key
-RUN chmod 600 /etc/munge/munge.key && chgrp munge /etc/munge/munge.key && sudo munge 101 /path/to/file
+RUN chmod 600 /etc/munge/munge.key && chgrp munge /etc/munge/munge.key && sudo munge /etc/munge/munge.key
 
 EXPOSE 6817 6818 6819
 
