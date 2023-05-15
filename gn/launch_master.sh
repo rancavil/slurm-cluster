@@ -3,6 +3,8 @@ set -x
 IMG_NAME="registry.cn-beijing.aliyuncs.com/oneflow/slurm-head"
 
 docker pull ${IMG_NAME}
+docker ps -a --filter "ancestor=${IMG_NAME}" -q | xargs docker stop
+echo "old container will be stopped"
 
 docker run -d --rm --name slurm-head-$USER --network=host \
 --add-host=slurmmaster:10.1.0.6 \

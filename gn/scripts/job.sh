@@ -5,7 +5,7 @@
 #
 #SBATCH --ntasks=1
 #
-
-WORKSPACE=/data_160T/home/fjr/workspace/slurm-cluster/gn/scripts
+# your own path for scripts, for example mine is 
+# WORKSPACE=/data_160T/home/fjr/workspace/slurm-cluster/gn/scripts
 # sbcast -f test.py $WORKSPACE/test.py
 srun python3 $WORKSPACE/test.py
