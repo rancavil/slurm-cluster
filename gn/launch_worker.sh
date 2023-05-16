@@ -10,8 +10,8 @@ docker run -d --gpus all --rm --name slurm-head-$USER --network=host \
 --add-host=slurmmaster:10.1.0.6 \
 --add-host=slurmnode1:10.0.0.9 \
 --add-host=slurmnode2:10.0.0.10 \
---add-host=slurmnode3:10.0.0.11 \
---add-host=slurmnode4:10.0.0.13 \
+--add-host=slurmnode3:10.0.0.13 \
+--add-host=slurmnode4:10.0.0.17 \
 --user=admin \
 -e SLURM_NODENAME="slurmnode${NODENAME}" \
 -v /mnt:/mnt \
