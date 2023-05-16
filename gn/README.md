@@ -1,3 +1,7 @@
+#
+
+This directory contains the scripts to launch slurm containers on Tencent Cloud Cluster to support [cc_net](https://github.com/Oneflow-Inc/redpajama-data/tree/main/data_prep/cc/cc_net)
+
 # How to use the images
 
 ```
@@ -31,7 +35,7 @@ launch_master.sh
 ```
 
 
-NODENAME should be different on machines.
+NODENAME should be different on all involved machines.
 ```
 env NODENAME=1 bash launch_workder.sh
 

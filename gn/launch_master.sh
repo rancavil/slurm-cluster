@@ -1,9 +1,11 @@
 set -x
 
-IMG_NAME="registry.cn-beijing.aliyuncs.com/oneflow/slurm-head"
+IMG_NAME="registry.cn-beijing.aliyuncs.com/oneflow/slurm-head:v0.1"
 
 docker pull ${IMG_NAME}
-docker ps -a --filter "ancestor=${IMG_NAME}" -q | xargs docker stop
+if docker ps -a --filter "ancestor=${IMG_NAME}" | grep -q "Up"; then
+     docker ps -a --filter "ancestor=${IMG_NAME}" -q | xargs docker stop
+fi
 echo "old container will be stopped"
 
 docker run -d --rm --name slurm-head-$USER --network=host \
