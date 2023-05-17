@@ -4,6 +4,7 @@ import time
 import os
 import socket
 from datetime import datetime as dt
+# import cc_net
 if __name__ == '__main__':
     print('Process started {}'.format(dt.now()))
     print('NODE : {}'.format(socket.gethostname()))
