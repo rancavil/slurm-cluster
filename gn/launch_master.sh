@@ -2,7 +2,7 @@ set -x
 
 IMG_NAME="registry.cn-beijing.aliyuncs.com/oneflow/slurm-head:v0.2"
 
-# docker pull ${IMG_NAME}
+docker pull ${IMG_NAME}
 if docker ps -a --filter "ancestor=${IMG_NAME}" | grep -q "Up"; then
      docker ps -a --filter "ancestor=${IMG_NAME}" -q | xargs docker stop
 fi

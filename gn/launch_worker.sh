@@ -1,6 +1,6 @@
 set -x
 NODENAME=${NODENAME:-1}
-IMG_NAME=registry.cn-beijing.aliyuncs.com/oneflow/slurm-worker:v0.2
+IMG_NAME=registry.cn-beijing.aliyuncs.com/oneflow/slurm-worker:v0.3
 
 docker pull ${IMG_NAME} 
 if docker ps -a --filter "ancestor=${IMG_NAME}" | grep -q "Up"; then
