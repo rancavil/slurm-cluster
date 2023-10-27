@@ -1,0 +1,13 @@
+[Unit]
+Description=Slurm Controller
+After=network.target munge.service
+Wants=network.target munge.service
+
+[Service]
+Type=simple
+ExecStart=/opt/slurm/sbin/slurmctld -D $SLURMCTLD_OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/run/slurmctld.pid 
+
+[Install]
+WantedBy=multi-user.target
