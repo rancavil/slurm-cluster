@@ -1,0 +1,141 @@
+services:
+  slurmjupyter:
+        image: rvencu/slurm-jupyter:23.02.6-1
+        hostname: slurmjupyter
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        ports:
+                - 8888:8888
+  slurmmaster:
+        image: rvencu/slurm-master:23.02.6-1
+        hostname: slurmmaster
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        ports:
+                - 6817:6817
+                - 6818:6818
+                - 6819:6819
+  slurmnode1:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode1
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode1
+        links:
+                - slurmmaster
+  slurmnode2:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode2
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode2
+        links:
+                - slurmmaster
+  slurmnode3:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode3
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode3
+        links:
+                - slurmmaster
+  slurmnode4:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode1
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode1
+        links:
+                - slurmmaster
+  slurmnode5:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode2
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode2
+        links:
+                - slurmmaster
+  slurmnode6:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode3
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode3
+        links:
+                - slurmmaster
+  slurmnode7:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode1
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode1
+        links:
+                - slurmmaster
+  slurmnode8:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode2
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode2
+        links:
+                - slurmmaster
+  slurmnode9:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode3
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode3
+        links:
+                - slurmmaster
+  slurmnode10:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode1
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode1
+        links:
+                - slurmmaster
+  slurmnode11:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode2
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode2
+        links:
+                - slurmmaster
+  slurmnode12:
+        image: rvencu/slurm-node:23.02.6-1
+        hostname: slurmnode3
+        user: admin
+        volumes:
+                - shared-vol:/home/admin
+        environment:
+                - SLURM_NODENAME=slurmnode3
+        links:
+                - slurmmaster
+volumes:
+        shared-vol:
